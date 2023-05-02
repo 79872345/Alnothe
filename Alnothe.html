@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    @import url(http://fonts.googleapis.com/earlyaccess/notosansjp.css);
+
+    html {
+      background-color: #323232;
+      color: greenyellow;
+      font-size: medium;
+    }
+
+    td {
+      border: 2px greenyellow solid;
+      empty-cells: hide;
+      text-align: center;
+      height: 2em;
+      width: 5em;
+    }
+
+    th {
+      border: 2px greenyellow solid;
+      empty-cells: hide;
+      text-align: center;
+      height: 2em;
+      width: 5em;
+      color: greenyellow;
+    }
+
+    .hide_td {
+      border: none;
+    }
+
+    a {
+      color: greenyellow;
+      text-decoration: none;
+    }
+
+    input[type=number],
+    input[type=text] {
+      background-color: #404040;
+      color: greenyellow;
+      font-size: medium;
+      height: 1.5em;
+      width: 4.5em;
+      border: none;
+    }
+
+    input[type=button] {
+      background-color: #404040;
+      color: greenyellow;
+    }
+
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+    }
+  </style>
+
+  <script type="text/javascript">
+    function Calc() {
+      var Var_Potency = (
+        ((parseFloat(100) + parseFloat(document.getElementById('WeAu1').value)) / 100) *
+        ((parseFloat(100) + parseFloat(document.getElementById('WeAu2').value)) / 100) *
+        ((parseFloat(100) + parseFloat(document.getElementById('WeAu3').value)) / 100) *
+        ((parseFloat(100) + parseFloat(document.getElementById('WeAu4').value)) / 100) *
+        ((parseFloat(100) + parseFloat(document.getElementById('WeAu5').value)) / 100) *
+        ((parseFloat(100) + parseFloat(document.getElementById('Un1Au1').value)) / 100) *
+        ((parseFloat(100) + parseFloat(document.getElementById('Un1Au2').value)) / 100) *
+        ((parseFloat(100) + parseFloat(document.getElementById('Un1Au3').value)) / 100) *
+        ((parseFloat(100) + parseFloat(document.getElementById('Un1Au4').value)) / 100) *
+        ((parseFloat(100) + parseFloat(document.getElementById('Un1Au5').value)) / 100) *
+        ((parseFloat(100) + parseFloat(document.getElementById('Un2Au1').value)) / 100) *
+        ((parseFloat(100) + parseFloat(document.getElementById('Un2Au2').value)) / 100) *
+        ((parseFloat(100) + parseFloat(document.getElementById('Un2Au3').value)) / 100) *
+        ((parseFloat(100) + parseFloat(document.getElementById('Un2Au4').value)) / 100) *
+        ((parseFloat(100) + parseFloat(document.getElementById('Un2Au5').value)) / 100) *
+        ((parseFloat(100) + parseFloat(document.getElementById('Un3Au1').value)) / 100) *
+        ((parseFloat(100) + parseFloat(document.getElementById('Un3Au2').value)) / 100) *
+        ((parseFloat(100) + parseFloat(document.getElementById('Un3Au3').value)) / 100) *
+        ((parseFloat(100) + parseFloat(document.getElementById('Un3Au4').value)) / 100) *
+        ((parseFloat(100) + parseFloat(document.getElementById('Un3Au5').value)) / 100) *
+        ((parseFloat(100) + parseFloat(document.getElementById('WePoy').value)) / 100) *
+        ((parseFloat(100) + parseFloat(document.getElementById('Un1Po').value)) / 100) *
+        ((parseFloat(100) + parseFloat(document.getElementById('Un2Po').value)) / 100) *
+        ((parseFloat(100) + parseFloat(document.getElementById('Un3Po').value)) / 100)
+      ) * 100 - 100;
+
+      Potency.value = Var_Potency;
+
+      R1Result1.value = Math.round(parseFloat(129.2) *
+        ((parseFloat(Var_Potency) + 100) / 100) *
+        ((parseFloat(100) + parseFloat(document.getElementById('WePol1').value)) / 100) *
+        ((parseFloat(100) + parseFloat(document.getElementById('WePol2').value)) / 100) *
+        ((parseFloat(100) + parseFloat(document.getElementById('WePol3').value)) / 100) *
+        ((parseFloat(100) + parseFloat(document.getElementById('Pre').value)) / 100) *
+        ((parseFloat(100) + parseFloat(document.getElementById('Mag').value)) / 100) *
+        ((parseFloat(100) + parseFloat(document.getElementById('Food').value)) / 100) *
+        ((parseFloat(100) + parseFloat(document.getElementById('Crisp').value)) / 100) *
+        ((parseFloat(document.getElementById('PA').value)) / 100) *
+        ((parseFloat(100) + parseFloat(document.getElementById('Addon').value)) / 100) *
+        ((parseFloat(100) + parseFloat(document.getElementById('Any').value)) / 100) *
+        parseFloat(1.05) * parseFloat(1.2) * parseFloat(1.1));
+
+      R1Result2.value = Math.round(parseFloat(129.2) *
+        ((parseFloat(Var_Potency) + 100) / 100) *
+        ((parseFloat(100) + parseFloat(document.getElementById('WePol1').value)) / 100) *
+        ((parseFloat(100) + parseFloat(document.getElementById('WePol2').value)) / 100) *
+        ((parseFloat(100) + parseFloat(document.getElementById('WePol3').value)) / 100) *
+        ((parseFloat(100) + parseFloat(document.getElementById('Pre').value)) / 100) *
+        ((parseFloat(100) + parseFloat(document.getElementById('Mag').value)) / 100) *
+        ((parseFloat(100) + parseFloat(document.getElementById('Food').value)) / 100) *
+        ((parseFloat(document.getElementById('PA').value)) / 100) *
+        ((parseFloat(100) + parseFloat(document.getElementById('Addon').value)) / 100) *
+        ((parseFloat(100) + parseFloat(document.getElementById('Any').value)) / 100) *
+        parseFloat(1.05) * parseFloat(1.1));
+
+      R3Result1.value = Math.round(parseFloat(189.2) *
+        ((parseFloat(Var_Potency) + 100) / 100) *
+        ((parseFloat(100) + parseFloat(document.getElementById('WePol1').value)) / 100) *
+        ((parseFloat(100) + parseFloat(document.getElementById('WePol2').value)) / 100) *
+        ((parseFloat(100) + parseFloat(document.getElementById('WePol3').value)) / 100) *
+        ((parseFloat(100) + parseFloat(document.getElementById('Pre').value)) / 100) *
+        ((parseFloat(100) + parseFloat(document.getElementById('Mag').value)) / 100) *
+        ((parseFloat(100) + parseFloat(document.getElementById('Food').value)) / 100) *
+        ((parseFloat(100) + parseFloat(document.getElementById('Crisp').value)) / 100) *
+        ((parseFloat(document.getElementById('PA').value)) / 100) *
+        ((parseFloat(100) + parseFloat(document.getElementById('Addon').value)) / 100) *
+        ((parseFloat(100) + parseFloat(document.getElementById('Any').value)) / 100) *
+        parseFloat(1.05) * parseFloat(1.2) * parseFloat(1.1));
+
+      R3Result2.value = Math.round(parseFloat(189.2) *
+        ((parseFloat(Var_Potency) + 100) / 100) *
+        ((parseFloat(100) + parseFloat(document.getElementById('WePol1').value)) / 100) *
+        ((parseFloat(100) + parseFloat(document.getElementById('WePol2').value)) / 100) *
+        ((parseFloat(100) + parseFloat(document.getElementById('WePol3').value)) / 100) *
+        ((parseFloat(100) + parseFloat(document.getElementById('Pre').value)) / 100) *
+        ((parseFloat(100) + parseFloat(document.getElementById('Mag').value)) / 100) *
+        ((parseFloat(100) + parseFloat(document.getElementById('Food').value)) / 100) *
+        ((parseFloat(document.getElementById('PA').value)) / 100) *
+        ((parseFloat(100) + parseFloat(document.getElementById('Addon').value)) / 100) *
+        ((parseFloat(100) + parseFloat(document.getElementById('Any').value)) / 100) *
+        parseFloat(1.05) * parseFloat(1.1));
+    }
+  </script>
+</head>
+
+<body>
+  <form>
+    <table>
+      <tr>
+        <th></th>
+        <th>武器</th>
+        <th>防具1</th>
+        <th>防具2</th>
+        <th>防具3</th>
+      </tr>
+
+      <tr>
+        <td>能力1</td>
+        <td><input type="number" id="WeAu1" value="4" size="4" step="0.25"></td>
+        <td><input type="number" id="Un1Au1" value="4" size="4" step="0.25"></td>
+        <td><input type="number" id="Un2Au1" value="4" size="4" step="0.25"></td>
+        <td><input type="number" id="Un3Au1" value="4" size="4" step="0.25"></td>
+      </tr>
+
+      <tr>
+        <td>能力2</td>
+        <td><input type="number" id="WeAu2" value="3.5" size="4" step="0.25"></td>
+        <td><input type="number" id="Un1Au2" value="3.5" size="4" step="0.25"></td>
+        <td><input type="number" id="Un2Au2" value="3.5" size="4" step="0.25"></td>
+        <td><input type="number" id="Un3Au2" value="3.5" size="4" step="0.25"></td>
+      </tr>
+
+      <tr>
+        <td>能力3</td>
+        <td><input type="number" id="WeAu3" value="3" size="4" step="0.25"></td>
+        <td><input type="number" id="Un1Au3" value="3" size="4" step="0.25"></td>
+        <td><input type="number" id="Un2Au3" value="3" size="4" step="0.25"></td>
+        <td><input type="number" id="Un3Au3" value="3" size="4" step="0.25"></td>
+      </tr>
+
+      <tr>
+        <td>能力4</td>
+        <td><input type="number" id="WeAu4" value="3" size="4" step="0.25"></td>
+        <td><input type="number" id="Un1Au4" value="3" size="4" step="0.25"></td>
+        <td><input type="number" id="Un2Au4" value="3" size="4" step="0.25"></td>
+        <td><input type="number" id="Un3Au4" value="3" size="4" step="0.25"></td>
+      </tr>
+
+      <tr>
+        <td>能力5</td>
+        <td><input type="number" id="WeAu5" value="3" size="4" step="0.25"></td>
+        <td><input type="number" id="Un1Au5" value="3" size="4" step="0.25"></td>
+        <td><input type="number" id="Un2Au5" value="3" size="4" step="0.25"></td>
+        <td><input type="number" id="Un3Au5" value="3" size="4" step="0.25"></td>
+      </tr>
+
+      <!--
+      <tr>
+        <td>能力6</td>
+        <td><input type="number" id="WeAu6" value="0" size="4" step="0.25"></td>
+        <td><input type="number" id="Un1Au6" value="0" size="4" step="0.25"></td>
+        <td><input type="number" id="Un2Au6" value="0" size="4" step="0.25"></td>
+        <td><input type="number" id="Un3Au6" value="0" size="4" step="0.25"></td>
+      </tr>
+
+      <tr>
+        <td>能力7</td>
+        <td><input type="number" id="WeAu7" value="0" size="4" step="0.25"></td>
+        <td><input type="number" id="Un1Au7" value="0" size="4" step="0.25"></td>
+        <td><input type="number" id="Un2Au7" value="0" size="4" step="0.25"></td>
+        <td><input type="number" id="Un3Au7" value="0" size="4" step="0.25"></td>
+      </tr>
+
+      <tr>
+        <td>能力8</td>
+        <td><input type="number" id="WeAu8" value="0" size="4" step="0.25"></td>
+        <td><input type="number" id="Un1Au8" value="0" size="4" step="0.25"></td>
+        <td><input type="number" id="Un2Au8" value="0" size="4" step="0.25"></td>
+        <td><input type="number" id="Un3Au8" value="0" size="4" step="0.25"></td>
+      </tr>
+    -->
+
+      <tr>
+        <td>補正</td>
+        <td><input type="number" id="WePoy" value="0" size="4" step="0.25"></td>
+        <td><input type="number" id="Un1Po" value="4" size="4" step="0.25"></td>
+        <td><input type="number" id="Un2Po" value="4" size="4" step="0.25"></td>
+        <td><input type="number" id="Un3Po" value="4" size="4" step="0.25"></td>
+      </tr>
+    </table>
+
+    <br>
+
+    <table>
+      <tr>
+        <th>潜在1</th>
+        <th>潜在2</th>
+        <th>潜在3</th>
+        <th>プリセット</th>
+        <th>マグ</th>
+      </tr>
+
+      <tr>
+        <td><input type="number" id="WePol1" value="42" size="4" step="0.25"></td>
+        <td><input type="number" id="WePol2" value="8" size="4" step="0.25"></td>
+        <td><input type="number" id="WePol3" value="0" size="4" step="0.25"></td>
+        <td><input type="number" id="Pre" value="5" size="4" step="0.25"></td>
+        <td><input type="number" id="Mag" value="0" size="4" step="5"></td>
+      </tr>
+
+      <tr>
+        <th>フード</th>
+        <th>シャッキ</th>
+        <th>PA倍率(%)</th>
+        <th>アドオン</th>
+        <th>任意倍率</th>
+      </tr>
+
+      <tr>
+        <td><input type="number" id="Food" value="10" size="4" step="0.25"></td>
+        <td><input type="number" id="Crisp" value="5" size="4" step="0.25"></td>
+        <td><input type="number" id="PA" value="132" size="4" step="0.25"></td>
+        <td><input type="number" id="Addon" value="5" size="4" step="0.25"></td>
+        <td><input type="number" id="Any" value="0" size="4" step="0.25"></td>
+      </tr>
+    </table>
+
+    <br>
+
+    <table>
+      <tr>
+        <th>威力</th>
+        <th>R1弱点</th>
+        <th>R1非弱点</th>
+        <th>R3弱点</th>
+        <th>R3非弱点</th>
+      </tr>
+
+      <tr>
+        <td><input type="text" id="Potency" readonly="" value="0"></td>
+        <td><input type="text" id=R1Result1 readonly="" value="0"></td>
+        <td><input type="text" id=R1Result2 readonly="" value="0"></td>
+        <td><input type="text" id=R3Result1 readonly="" value="0"></td>
+        <td><input type="text" id=R3Result2 readonly="" value="0"></td>
+      </tr>
+    </table>
+    <input type="button" value="計算" onclick="Calc()">
+  </form>
+</body>
+
+<footer>
+  <p>（C）SEGA『PHANTASY STAR ONLINE 2』公式サイト<a href="https://pso2.jp/">https://pso2.jp/</a></p>
+</footer>
+
+</html>
