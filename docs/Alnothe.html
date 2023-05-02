@@ -59,6 +59,10 @@
   </style>
 
   <script type="text/javascript">
+    window.onload = function(){
+      Calc();
+    }
+    
     function Calc() {
       var Var_Potency = (
         ((parseFloat(100) + parseFloat(document.getElementById('WeAu1').value)) / 100) *
