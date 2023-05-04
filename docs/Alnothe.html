@@ -76,7 +76,7 @@
         Total_Potency = Math.round((Total_Potency * ((parseFloat(100) + parseFloat(Non_Augment_Potency_Elements[i].value)) / 100)) * 10000) / 10000;
       }
 
-      Potency.value = (Math.round((ToTal_Augment_Potency - 1) * 1000) / 1000) * 100 + "%";
+      Potency.value = Math.round((ToTal_Augment_Potency - 1) * 1000) / 10 + "%";
 
       R1Result1.value = Math.round(
         parseFloat(Total_Potency) *
@@ -117,7 +117,7 @@
         Total_Potency_b = Math.round((Total_Potency_b * ((parseFloat(100) + parseFloat(Non_Augment_Potency_Elements_b[i].value)) / 100)) * 10000) / 10000;
       }
 
-      Potency_b.value = (Math.round((ToTal_Augment_Potency_b - 1) * 1000) / 1000) * 100 + "%";
+      Potency_b.value = Math.round((ToTal_Augment_Potency_b - 1) * 1000) / 10 + "%";
 
       R1Result1_b.value = Math.round(
         parseFloat(Total_Potency_b) *
@@ -364,7 +364,7 @@
             onclick="Calc()"></td>
         <td><input type="number" class="Non_Augment_Potency" id="WePol3" value="0" size="4" step="0.25"
             onclick="Calc()"></td>
-        <td><input type="number" class="Non_Augment_Potency" id="Pre" value="5" size="4" step="0.25" onclick="Calc()">
+        <td><input type="number" class="Non_Augment_Potency" id="Pre" value="5" size="4" step="0.5" onclick="Calc()">
         </td>
         <td><input type="number" class="Non_Augment_Potency" id="Mag" value="0" size="4" step="5" onclick="Calc()"></td>
         <td></td>
@@ -374,7 +374,7 @@
             onclick="Calc()"></td>
         <td><input type="number" class="Non_Augment_Potency_b" id="WePol3_b" value="0" size="4" step="0.25"
             onclick="Calc()"></td>
-        <td><input type="number" class="Non_Augment_Potency_b" id="Pre_b" value="3" size="4" step="0.25"
+        <td><input type="number" class="Non_Augment_Potency_b" id="Pre_b" value="3" size="4" step="0.5"
             onclick="Calc()"></td>
         <td><input type="number" class="Non_Augment_Potency_b" id="Mag_b" value="0" size="4" step="5" onclick="Calc()">
         </td>
