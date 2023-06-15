@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8">
+  <title>エルノザR4</title>
+  <style>
+    html {
+      background-color: #313231;
+      color: lightgray;
+      font-size: medium;
+    }
+    td {
+      border: 2px gray solid;
+      empty-cells: hide;
+      border-radius: 4px;
+      text-align: center;
+      height: 30px;
+      width: 78px;
+      align-items: center;
+      vertical-align:center;
+    }
+    th {
+      border: 2px gray solid;
+      border-radius: 4px;
+      empty-cells: hide;
+      text-align: center;
+      vertical-align:center;
+      height: 30px;
+      width: 78px;
+      font-size: 14px;
+    }
+    .hide_td {
+      border: none;
+    }
+    a {
+      color: lightgray;
+      text-decoration: none;
+    }
+    input[type=number]{
+      background-color: transparent;
+      color: lightsalmon;
+      font-size: medium;
+      height: 24px;
+      width: 70px;
+      border: none;
+    }
+    input[type=number]:focus{
+      background-color: lightsalmon;
+      color: #313231;
+      outline:none;
+      border-radius: 2px;
+    }
+    input[type=text] {
+      background-color: transparent;
+      color: lightgreen;
+      font-size: medium;
+      height: 24px;
+      width: 70px;
+      text-align: right;
+      vertical-align:center;
+      outline:none;
+      border: none;
+      border-radius: 2px;
+    }
+    input[type=button] {
+      background-color: lightsalmon;
+      border: 2px gray solid;
+      color: #313231;
+      border-radius: 4px;
+      height: 38px;
+      width: 78px;
+      font-size: 28px;
+      line-height: 28px;
+    }
+    input[type=button]:active {
+      background-color: transparent;
+      border: transparent;
+      color: lightgray;
+      height: 38px;
+      width: 78px;
+    }
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      margin-top: 30px;
+      margin-left: 30px;
+    }
+    form{
+      width: 9450px;
+    }
+  </style>
+
+  <script type="text/javascript">
+    window.onload = function () {
+      Calc();
+    }
+
+    function Calc() {
+      var ToTal_Augment_Potency = '1';
+      var Total_Augment_Potency_Floor_Increase = '1';
+
+      const Augment_Potency_Elements = document.getElementsByClassName('Augment_Potency');
+      const Augment_Potency_Floor_Increase_Elements = document.getElementsByClassName('Augment_Potency_Floor_Increase');
+
+      for (let i = 0; i < Augment_Potency_Elements.length; i++) {
+        ToTal_Augment_Potency = Math.round((ToTal_Augment_Potency * ((parseFloat(100) + parseFloat(Augment_Potency_Elements[i].value)) / 100)) * 10000) / 10000;
+      }
+      for (let i = 0; i < Augment_Potency_Floor_Increase_Elements.length; i++) {
+        Total_Augment_Potency_Floor_Increase = Math.round((Total_Augment_Potency_Floor_Increase * ((parseFloat(100) + parseFloat(Augment_Potency_Floor_Increase_Elements[i].value)) / 100)) * 10000) / 10000;
+      }
+
+      var Total_Potency = ToTal_Augment_Potency;
+      var Total_Potency_Floor_Increase = Total_Augment_Potency_Floor_Increase;
+      const Non_Augment_Potency_Elements = document.getElementsByClassName('Non_Augment_Potency');
+      const Non_Augment_Potency_Floor_Increase_Elements = document.getElementsByClassName('Non_Augment_Potency_Floor_Increase');
+
+      for (let i = 0; i < Non_Augment_Potency_Elements.length; i++) {
+        Total_Potency = ((Total_Potency * ((parseFloat(100) + parseFloat(Non_Augment_Potency_Elements[i].value)) / 100)) * 10000) / 10000;
+      }
+      for (let i = 0; i < Non_Augment_Potency_Floor_Increase_Elements.length; i++) {
+        Total_Potency_Floor_Increase = ((Total_Potency_Floor_Increase * ((parseFloat(100) + parseFloat(Non_Augment_Potency_Floor_Increase_Elements[i].value)) / 100)) * 10000) / 10000;
+      }
+
+      Potency.value = Math.floor((ToTal_Augment_Potency - 1) * 1000) / 10 + "%";
+      Potency_Floor_Increase.value = Math.floor((Total_Augment_Potency_Floor_Increase - 1) * 1000) / 10 + "%";
+
+      Rank4_Min_Result.value = Math.floor(
+      Math.floor(
+        Math.floor(
+          document.getElementById('Weapon_ATK').value
+        * (document.getElementById('Weapon_Variance').value * Total_Augment_Potency_Floor_Increase)
+        )
+        + Math.floor(document.getElementById('Player_ATK').value)
+        - 1385)
+        * parseFloat(Total_Potency)
+        * (parseFloat(document.getElementById('PA').value) / 100) / 5);
+      
+      Rank4_Crt_Result.value = Math.floor(
+      Math.floor(
+        Math.floor(document.getElementById('Weapon_ATK').value)
+        + Math.floor(document.getElementById('Player_ATK').value)
+        - 1385)
+        * parseFloat(Total_Potency)
+        * parseFloat(1.2)
+        * (1 + (document.getElementById('Addon_Skill_Fi').value / 100))
+        * (parseFloat(document.getElementById('PA').value) / 100) / 5);
+    }
+  </script>
+</head>
+
+<body>
+  <form>
+    <table>
+      <tr>
+        <th>威力</th>
+        <th>武器</th>
+        <th>防具1</th>
+        <th>防具2</th>
+        <th>防具3</th>
+        <th></th>
+        <th>下限</th>
+        <th>武器</th>
+        <th>防具1</th>
+        <th>防具2</th>
+        <th>防具3</th>
+      </tr>
+
+      <tr>
+        <td>能力1</td>
+        <td><input type="number" class="Augment_Potency" id="Weapon_Augment_Potency_1" value="4" step="0.25" min="0" onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency" id="Unit_1_Augment_Potency_1" value="4" step="0.25" min="0" onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency" id="Unit_2_Augment_Potency_1" value="4" step="0.25" min="0" onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency" id="Unit_3_Augment_Potency_1" value="4" step="0.25" min="0" onclick="Calc()"></td>
+        <td></td>
+        <td>能力1</td>
+        <td><input type="number" class="Augment_Potency_Floor_Increase" id="Weapon_Augment_Potency_Floor_Increase_1" value="3" step="0.25" min="0" onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency_Floor_Increase" id="Unit_1_Augment_Potency_Floor_Increase_1" value="3" step="0.25" min="0" onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency_Floor_Increase" id="Unit_2_Augment_Potency_Floor_Increase_1" value="3" step="0.25" min="0" onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency_Floor_Increase" id="Unit_3_Augment_Potency_Floor_Increase_1" value="3" step="0.25" min="0" onclick="Calc()"></td>
+      </tr>
+
+      <tr>
+        <td>能力2</td>
+        <td><input type="number" class="Augment_Potency" id="Weapon_Augment_Potency_2" value="4" step="0.25" min="0" onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency" id="Unit_1_Augment_Potency_2" value="4" step="0.25" min="0" onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency" id="Unit_2_Augment_Potency_2" value="4" step="0.25" min="0" onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency" id="Unit_3_Augment_Potency_2" value="4" step="0.25" min="0" onclick="Calc()"></td>
+        <td></td>
+        <td>能力2</td>
+        <td><input type="number" class="Augment_Potency_Floor_Increase" id="Weapon_Augment_Potency_Floor_Increase_2" value="0" step="0.25" min="0" onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency_Floor_Increase" id="Unit_1_Augment_Potency_Floor_Increase_2" value="0" step="0.25" min="0" onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency_Floor_Increase" id="Unit_2_Augment_Potency_Floor_Increase_2" value="0" step="0.25" min="0" onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency_Floor_Increase" id="Unit_3_Augment_Potency_Floor_Increase_2" value="0" step="0.25" min="0" onclick="Calc()"></td>
+      </tr>
+
+      <tr>
+        <td>能力3</td>
+        <td><input type="number" class="Augment_Potency" id="Weapon_Augment_Potency_3" value="3.5" step="0.25" min="0" onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency" id="Unit_1_Augment_Potency_3" value="3.5" step="0.25" min="0" onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency" id="Unit_2_Augment_Potency_3" value="3.5" step="0.25" min="0" onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency" id="Unit_3_Augment_Potency_3" value="3.5" step="0.25" min="0" onclick="Calc()"></td>
+        <td></td>
+        <td>能力3</td>
+        <td><input type="number" class="Augment_Potency_Floor_Increase" id="Weapon_Augment_Potency_Floor_Increase_3" value="0" step="0.25" min="0" onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency_Floor_Increase" id="Unit_1_Augment_Potency_Floor_Increase_3" value="0" step="0.25" min="0" onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency_Floor_Increase" id="Unit_2_Augment_Potency_Floor_Increase_3" value="0" step="0.25" min="0" onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency_Floor_Increase" id="Unit_3_Augment_Potency_Floor_Increase_3" value="0" step="0.25" min="0" onclick="Calc()"></td>
+      </tr>
+
+      <tr>
+        <td>能力4</td>
+        <td><input type="number" class="Augment_Potency" id="Weapon_Augment_Potency_4" value="3" step="0.25" min="0" onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency" id="Unit_1_Augment_Potency_4" value="3" step="0.25" min="0" onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency" id="Unit_2_Augment_Potency_4" value="3" step="0.25" min="0" onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency" id="Unit_3_Augment_Potency_4" value="3" step="0.25" min="0" onclick="Calc()"></td>
+        <td></td>
+        <td>能力4</td>
+        <td><input type="number" class="Augment_Potency_Floor_Increase" id="Weapon_Augment_Potency_Floor_Increase_4" value="2" step="0.25" min="0" onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency_Floor_Increase" id="Unit_1_Augment_Potency_Floor_Increase_4" value="2" step="0.25" min="0" onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency_Floor_Increase" id="Unit_2_Augment_Potency_Floor_Increase_4" value="2" step="0.25" min="0" onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency_Floor_Increase" id="Unit_3_Augment_Potency_Floor_Increase_4" value="2" step="0.25" min="0" onclick="Calc()"></td>
+      </tr>
+
+      <tr>
+        <td>能力5</td>
+        <td><input type="number" class="Augment_Potency" id="Weapon_Augment_Potency_5" value="3" step="0.25" min="0" onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency" id="Unit_1_Augment_Potency_5" value="3" step="0.25" min="0" onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency" id="Unit_2_Augment_Potency_5" value="3" step="0.25" min="0" onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency" id="Unit_3_Augment_Potency_5" value="3" step="0.25" min="0" onclick="Calc()"></td>
+        <td></td>
+        <td>能力5</td>
+        <td><input type="number" class="Augment_Potency_Floor_Increase" id="Weapon_Augment_Potency_Floor_Increase_5" value="0" step="0.25" min="0" onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency_Floor_Increase" id="Unit_1_Augment_Potency_Floor_Increase_5" value="0" step="0.25" min="0" onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency_Floor_Increase" id="Unit_2_Augment_Potency_Floor_Increase_5" value="0" step="0.25" min="0" onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency_Floor_Increase" id="Unit_3_Augment_Potency_Floor_Increase_5" value="0" step="0.25" min="0" onclick="Calc()"></td>
+      </tr>
+
+      <tr>
+        <td>能力6</td>
+        <td><input type="number" class="Augment_Potency" id="Weapon_Augment_Potency_6" value="3" step="0.25" min="0" onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency" id="Unit_1_Augment_Potency_6" value="3" step="0.25" min="0" onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency" id="Unit_2_Augment_Potency_6" value="3" step="0.25" min="0" onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency" id="Unit_3_Augment_Potency_6" value="3" step="0.25" min="0" onclick="Calc()"></td>
+        <td></td>
+        <td>能力6</td>
+        <td><input type="number" class="Augment_Potency_Floor_Increase" id="Weapon_Augment_Potency_Floor_Increase_6" value="0" step="0.25" min="0" onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency_Floor_Increase" id="Unit_1_Augment_Potency_Floor_Increase_6" value="0" step="0.25" min="0" onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency_Floor_Increase" id="Unit_2_Augment_Potency_Floor_Increase_6" value="0" step="0.25" min="0" onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency_Floor_Increase" id="Unit_3_Augment_Potency_Floor_Increase_6" value="0" step="0.25" min="0" onclick="Calc()"></td>
+      </tr>
+
+      <tr>
+        <td>補正</td>
+        <td><input type="number" class="Augment_Potency" id="Weapon_Potency" value="0" step="0.25" min="0" onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency" id="Unit_1_Potency" value="4" step="0.25" min="0" onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency" id="Unit_2_Potency" value="4" step="0.25" min="0" onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency" id="Unit_3_Potency" value="4" step="0.25" min="0" onclick="Calc()"></td>
+        <td></td>
+        <td>補正</td>
+        <td><input type="number" class="Augment_Potency_Floor_Increase" id="Weapon_Potency_Floor_Increase" value="0" step="0.25" min="0" onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency_Floor_Increase" id="Unit_1_Potency_Floor_Increase" value="0" step="0.25" min="0" onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency_Floor_Increase" id="Unit_2_Potency_Floor_Increase" value="0" step="0.25" min="0" onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency_Floor_Increase" id="Unit_3_Potency_Floor_Increase" value="0" step="0.25" min="0" onclick="Calc()"></td>
+        </td>
+      </tr>
+
+      <td></td>
+
+      <tr>
+        <th colspan="5"></th>
+        <th>潜在1</th>
+        <th>潜在2</th>
+        <th>基礎攻撃力</th>
+        <th>武器攻撃力</th>
+        <th>武器下限</th>
+        <th>プリセット</th>
+      </tr>
+
+      <tr>
+        <td colspan="5"></td>
+        <td><input type="number" class="Non_Augment_Potency" id="Weapon_Properties_1" value="42" step="1" min="0" onclick="Calc()"></td>
+        <td><input type="number" class="Non_Augment_Potency" id="Weapon_Properties_2" value="8" step="1" min="0" onclick="Calc()"></td>
+        <td><input type="number" id="Player_ATK" value="1845" step="1" min="0" onclick="Calc()"></td>
+        <td><input type="number" id="Weapon_ATK" value="727" step="1" min="0" onclick="Calc()"></td>
+        <td><input type="number" id="Weapon_Variance" value="0.75" step="0.25" min="0.5" max="0.75" onclick="Calc()"></td>
+        <td><input type="number" class="Non_Augment_Potency" id="Preset_Skill" value="5" step="0.5" max="5" min="0" onclick="Calc()"></td>
+      </tr>
+
+      <tr>
+        <th colspan="5"></th>
+        <th>PA倍率</th>
+        <th>クラス補正</th>
+        <th>フード</th>
+        <th>攻撃マグ</th>
+        <th>Foアドオン</th>
+        <th>Fiアドオン</th>
+      </tr>
+
+      <tr>
+        <td colspan="5"></td>
+        <td><input type="number" id="PA" value="205" step="1" min="0" onclick="Calc()"></td>
+        <td><input type="number" class="Non_Augment_Potency" id="Class_Boost" value="10" step="10" max="10" min="0"onclick="Calc()"></td>
+        <td><input type="number" class="Non_Augment_Potency" id="Food_Boost" value="10" step="0.2" max="10" min="0" onclick="Calc()"></td>
+        <td><input type="number" class="Non_Augment_Potency" id="Mag_Potency" value="0" step="5" max="5" min="0" onclick="Calc()"></td>
+        <td><input type="number" class="Non_Augment_Potency" id="Addon_Skill" value="5" step="0.25" max="5" min="0" onclick="Calc()"></td>
+        <td><input type="number" id="Addon_Skill_Fi" value="10" step="0.5" max="10" min="0" onclick="Calc()"></td>
+      </tr>
+
+      <td></td>
+
+      <tr>
+        <th colspan="7"></th>
+        <th>威力</th>
+        <th>下限</th>
+        <th>R4最低</th>
+        <th>R4クリ</th>
+      </tr>
+      <tr>
+        <td colspan="7"></td>
+        <td><input type="text" id="Potency" readonly="" value="0"></td>
+        <td><input type="text" id="Potency_Floor_Increase" readonly="" value="0"></td>
+        <td><input type="text" id="Rank4_Min_Result" readonly="" value="0"></td>
+        <td><input type="text" id="Rank4_Crt_Result" readonly="" value="0"></td>
+      </tr>
+    </table>
+    <br>
+    <input type="button" value="計算" onclick="Calc()">
+  </form>
+</body>
+
+<footer>
+  <p>（C）SEGA『PHANTASY STAR ONLINE 2』公式サイト<a href="https://pso2.jp/">https://pso2.jp/</a></p>
+</footer>
+
+</html>
