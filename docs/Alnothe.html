@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8">
+  <title>エルノザ</title>
+  <meta name="application-name" content="エルノザ">
+  <meta name="description" content="エルノザR1､R3用">
+  <meta property="og:title" content="エルノザ">
+  <meta property="og:description" content="エルノザR1､R3用">
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+  <style>
+    html {
+      background-color: #313231;
+      color: lightgray;
+      font-size: medium;
+    }
+
+    td {
+      border: 2px gray solid;
+      empty-cells: hide;
+      border-radius: 4px;
+      text-align: center;
+      height: 30px;
+      width: 78px;
+      align-items: center;
+      vertical-align:center;
+    }
+
+    th {
+      border: 2px gray solid;
+      border-radius: 4px;
+      empty-cells: hide;
+      text-align: center;
+      vertical-align:center;
+      height: 30px;
+      width: 78px;
+      font-size: 14px;
+    }
+
+    .hide_td {
+      border: none;
+    }
+
+    a {
+      color: lightgray;
+      text-decoration: none;
+    }
+
+    input[type=number]{
+      background-color: transparent;
+      color: lightsalmon;
+      font-size: medium;
+      height: 24px;
+      width: 70px;
+      border: none;
+    }
+
+    input[type=number]:focus{
+      background-color: lightsalmon;
+      color: #313231;
+      outline:none;
+      border-radius: 2px;
+    }
+
+    input[type=text] {
+      background-color: transparent;
+      color: lightgreen;
+      font-size: medium;
+      height: 24px;
+      width: 70px;
+      text-align: right;
+      vertical-align:center;
+      outline:none;
+      border: none;
+      border-radius: 2px;
+    }
+
+    input[type=button] {
+      background-color: lightsalmon;
+      border: 2px gray solid;
+      color: #313231;
+      border-radius: 4px;
+      height: 38px;
+      width: 78px;
+      font-size: 28px;
+      line-height: 28px;
+    }
+
+    input[type=button]:active {
+      background-color: transparent;
+      border: transparent;
+      color: lightgray;
+      height: 38px;
+      width: 78px;
+    }
+
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      margin-top: 30px;
+      margin-left: 30px;
+    }
+  </style>
+
+  <script type="text/javascript">
+    window.onload = function () {
+      Calc();
+    }
+
+    function Calc() {
+      var ToTal_Augment_Potency = '1';
+      const Augment_Potency_Elements = document.getElementsByClassName('Augment_Potency');
+
+      for (let i = 0; i < Augment_Potency_Elements.length; i++) {
+        ToTal_Augment_Potency = Math.round((ToTal_Augment_Potency * ((parseFloat(100) + parseFloat(Augment_Potency_Elements[i].value)) / 100)) * 10000) / 10000;
+      }
+
+      var Total_Potency = ToTal_Augment_Potency;
+      const Non_Augment_Potency_Elements = document.getElementsByClassName('Non_Augment_Potency');
+      for (let i = 0; i < Non_Augment_Potency_Elements.length; i++) {
+        Total_Potency = Math.round((Total_Potency * ((parseFloat(100) + parseFloat(Non_Augment_Potency_Elements[i].value)) / 100)) * 10000) / 10000;
+      }
+
+      Potency.value = Math.round((ToTal_Augment_Potency - 1) * 1000) / 10 + "%";
+
+      R1Result1.value = Math.round(
+        parseFloat(Total_Potency) *
+        (parseFloat(document.getElementById('PA').value) / 100) *
+        ((parseFloat(100) + parseFloat(document.getElementById('Crisp').value)) / 100) *
+        parseFloat(129.2) *
+        parseFloat(1.2));
+
+      R1Result2.value = Math.round(
+        parseFloat(Total_Potency) *
+        (parseFloat(document.getElementById('PA').value) / 100) *
+        parseFloat(129.2));
+
+      R3Result1.value = Math.round(
+        parseFloat(Total_Potency) *
+        (parseFloat(document.getElementById('PA').value) / 100) *
+        ((parseFloat(100) + parseFloat(document.getElementById('Crisp').value)) / 100) *
+        parseFloat(189.2) *
+        parseFloat(1.2));
+
+      R3Result2.value = Math.round(
+        parseFloat(Total_Potency) *
+        (parseFloat(document.getElementById('PA').value) / 100) *
+        parseFloat(189.2));
+
+      <!--B-->
+
+      var ToTal_Augment_Potency_b = '1';
+      const Augment_Potency_Elements_b = document.getElementsByClassName('Augment_Potency_b');
+
+      for (let i = 0; i < Augment_Potency_Elements_b.length; i++) {
+        ToTal_Augment_Potency_b = Math.round((ToTal_Augment_Potency_b * ((parseFloat(100) + parseFloat(Augment_Potency_Elements_b[i].value)) / 100)) * 10000) / 10000;
+      }
+
+      var Total_Potency_b = ToTal_Augment_Potency_b;
+      const Non_Augment_Potency_Elements_b = document.getElementsByClassName('Non_Augment_Potency_b');
+      for (let i = 0; i < Non_Augment_Potency_Elements_b.length; i++) {
+        Total_Potency_b = Math.round((Total_Potency_b * ((parseFloat(100) + parseFloat(Non_Augment_Potency_Elements_b[i].value)) / 100)) * 10000) / 10000;
+      }
+
+      Potency_b.value = Math.round((ToTal_Augment_Potency_b - 1) * 1000) / 10 + "%";
+
+      R1Result1_b.value = Math.round(
+        parseFloat(Total_Potency_b) *
+        (parseFloat(document.getElementById('PA_b').value) / 100) *
+        ((parseFloat(100) + parseFloat(document.getElementById('Crisp_b').value)) / 100) *
+        parseFloat(129.2) *
+        parseFloat(1.2));
+
+      R1Result2_b.value = Math.round(
+        parseFloat(Total_Potency_b) *
+        (parseFloat(document.getElementById('PA_b').value) / 100) *
+        parseFloat(129.2));
+
+      R3Result1_b.value = Math.round(
+        parseFloat(Total_Potency_b) *
+        (parseFloat(document.getElementById('PA_b').value) / 100) *
+        ((parseFloat(100) + parseFloat(document.getElementById('Crisp_b').value)) / 100) *
+        parseFloat(189.2) *
+        parseFloat(1.2));
+
+      R3Result2_b.value = Math.round(
+        parseFloat(Total_Potency_b) *
+        (parseFloat(document.getElementById('PA_b').value) / 100) *
+        parseFloat(189.2));
+    }
+  </script>
+</head>
+
+<body>
+  <form>
+    <table>
+      <tr>
+        <th></th>
+        <th>武器</th>
+        <th>防具1</th>
+        <th>防具2</th>
+        <th>防具3</th>
+        <th></th>
+        <th></th>
+        <th>武器</th>
+        <th>防具1</th>
+        <th>防具2</th>
+        <th>防具3</th>
+      </tr>
+
+      <tr>
+        <td>能力1</td>
+        <td><input type="number" class="Augment_Potency" id="WeAu1" value="4" size="4" step="0.25" min="0" onclick="Calc()">
+        </td>
+        <td><input type="number" class="Augment_Potency" id="Un1Au1" value="4" size="4" step="0.25" min="0" onclick="Calc()">
+        </td>
+        <td><input type="number" class="Augment_Potency" id="Un2Au1" value="4" size="4" step="0.25" min="0" onclick="Calc()">
+        </td>
+        <td><input type="number" class="Augment_Potency" id="Un3Au1" value="4" size="4" step="0.25" min="0" onclick="Calc()">
+        </td>
+        <td></td>
+        <td>能力1</td>
+        <td><input type="number" class="Augment_Potency_b" id="WeAu1_b" value="3" size="4" step="0.25" min="0" onclick="Calc()">
+        </td>
+        <td><input type="number" class="Augment_Potency_b" id="Un1Au1_b" value="3" size="4" step="0.25" min="0"
+            onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency_b" id="Un2Au1_b" value="3" size="4" step="0.25" min="0"
+            onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency_b" id="Un3Au1_b" value="3" size="4" step="0.25" min="0"
+            onclick="Calc()"></td>
+      </tr>
+
+      <tr>
+        <td>能力2</td>
+        <td><input type="number" class="Augment_Potency" id="WeAu2" value="4" size="4" step="0.25" min="0" onclick="Calc()">
+        </td>
+        <td><input type="number" class="Augment_Potency" id="Un1Au2" value="4" size="4" step="0.25" min="0" onclick="Calc()">
+        </td>
+        <td><input type="number" class="Augment_Potency" id="Un2Au2" value="4" size="4" step="0.25" min="0" onclick="Calc()">
+        </td>
+        <td><input type="number" class="Augment_Potency" id="Un3Au2" value="4" size="4" step="0.25" min="0" onclick="Calc()">
+        </td>
+        <td></td>
+        <td>能力2</td>
+        <td><input type="number" class="Augment_Potency_b" id="WeAu2_b" value="3" size="4" step="0.25" min="0" onclick="Calc()">
+        </td>
+        <td><input type="number" class="Augment_Potency_b" id="Un1Au2_b" value="3" size="4" step="0.25" min="0"
+            onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency_b" id="Un2Au2_b" value="3" size="4" step="0.25" min="0"
+            onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency_b" id="Un3Au2_b" value="3" size="4" step="0.25" min="0"
+            onclick="Calc()"></td>
+      </tr>
+
+      <tr>
+        <td>能力3</td>
+        <td><input type="number" class="Augment_Potency" id="WeAu3" value="3.5" size="4" step="0.25" min="0" onclick="Calc()">
+        </td>
+        <td><input type="number" class="Augment_Potency" id="Un1Au3" value="3.5" size="4" step="0.25" min="0" onclick="Calc()">
+        </td>
+        <td><input type="number" class="Augment_Potency" id="Un2Au3" value="3.5" size="4" step="0.25" min="0" onclick="Calc()">
+        </td>
+        <td><input type="number" class="Augment_Potency" id="Un3Au3" value="3.5" size="4" step="0.25" min="0" onclick="Calc()">
+        </td>
+        <td></td>
+        <td>能力3</td>
+        <td><input type="number" class="Augment_Potency_b" id="WeAu3_b" value="2.75" size="4" step="0.25" min="0"
+            onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency_b" id="Un1Au3_b" value="2.75" size="4" step="0.25" min="0"
+            onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency_b" id="Un2Au3_b" value="2.75" size="4" step="0.25" min="0"
+            onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency_b" id="Un3Au3_b" value="2.75" size="4" step="0.25" min="0"
+            onclick="Calc()"></td>
+      </tr>
+
+      <tr>
+        <td>能力4</td>
+        <td><input type="number" class="Augment_Potency" id="WeAu4" value="3" size="4" step="0.25" min="0" onclick="Calc()">
+        </td>
+        <td><input type="number" class="Augment_Potency" id="Un1Au4" value="3" size="4" step="0.25" min="0" onclick="Calc()">
+        </td>
+        <td><input type="number" class="Augment_Potency" id="Un2Au4" value="3" size="4" step="0.25" min="0" onclick="Calc()">
+        </td>
+        <td><input type="number" class="Augment_Potency" id="Un3Au4" value="3" size="4" step="0.25" min="0" onclick="Calc()">
+        </td>
+        <td></td>
+        <td>能力4</td>
+        <td><input type="number" class="Augment_Potency_b" id="WeAu4_b" value="2.5" size="4" step="0.25" min="0"
+            onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency_b" id="Un1Au4_b" value="2.5" size="4" step="0.25" min="0"
+            onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency_b" id="Un2Au4_b" value="2.5" size="4" step="0.25" min="0"
+            onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency_b" id="Un3Au4_b" value="2.5" size="4" step="0.25" min="0"
+            onclick="Calc()"></td>
+      </tr>
+
+      <tr>
+        <td>能力5</td>
+        <td><input type="number" class="Augment_Potency" id="WeAu5" value="3" size="4" step="0.25" min="0" onclick="Calc()">
+        </td>
+        <td><input type="number" class="Augment_Potency" id="Un1Au5" value="3" size="4" step="0.25" min="0" onclick="Calc()">
+        </td>
+        <td><input type="number" class="Augment_Potency" id="Un2Au5" value="3" size="4" step="0.25" min="0" onclick="Calc()">
+        </td>
+        <td><input type="number" class="Augment_Potency" id="Un3Au5" value="3" size="4" step="0.25" min="0" onclick="Calc()">
+        </td>
+        <td></td>
+        <td>能力5</td>
+        <td><input type="number" class="Augment_Potency_b" id="WeAu5_b" value="2" size="4" step="0.25" min="0"
+            onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency_b" id="Un1Au5_b" value="2" size="4" step="0.25" min="0"
+            onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency_b" id="Un2Au5_b" value="2" size="4" step="0.25" min="0"
+            onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency_b" id="Un3Au5_b" value="2" size="4" step="0.25" min="0"
+            onclick="Calc()"></td>
+      </tr>
+
+      <tr>
+        <td>能力6</td>
+        <td><input type="number" class="Augment_Potency" id="WeAu6" value="3" size="4" step="0.25" min="0" onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency" id="Un1Au6" value="3" size="4" step="0.25" min="0" onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency" id="Un2Au6" value="3" size="4" step="0.25" min="0" onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency" id="Un3Au6" value="3" size="4" step="0.25" min="0" onclick="Calc()"></td>
+        <td></td>
+        <td>能力6</td>
+        <td><input type="number" class="Augment_Potency_b" id="WeAu6_b" value="0" size="4" step="0.25" min="0" onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency_b" id="Un1Au6_b" value="0" size="4" step="0.25" min="0" onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency_b" id="Un2Au6_b" value="0" size="4" step="0.25" min="0" onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency_b" id="Un3Au6_b" value="0" size="4" step="0.25" min="0" onclick="Calc()"></td>
+      </tr>
+
+      <!--
+      <tr>
+        <td>能力7</td>
+        <td><input type="number" class="Augment_Potency" id="WeAu7" value="3" size="4" step="0.25" min="0" onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency" id="Un1Au7" value="3" size="4" step="0.25" min="0" onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency" id="Un2Au7" value="3" size="4" step="0.25" min="0" onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency" id="Un3Au7" value="3" size="4" step="0.25" min="0" onclick="Calc()"></td>
+        <td></td>
+        <td>能力7</td>
+        <td><input type="number" class="Augment_Potency_b" id="WeAu7_b" value="3" size="4" step="0.25" min="0" onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency_b" id="Un1Au7_b" value="3" size="4" step="0.25" min="0" onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency_b" id="Un2Au7_b" value="3" size="4" step="0.25" min="0" onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency_b" id="Un3Au7_b" value="3" size="4" step="0.25" min="0" onclick="Calc()"></td>
+      </tr>
+
+      <tr>
+        <td>能力8</td>
+        <td><input type="number" class="Augment_Potency" id="WeAu8" value="3" size="4" step="0.25" min="0" onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency" id="Un1Au8" value="3" size="4" step="0.25" min="0" onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency" id="Un2Au8" value="3" size="4" step="0.25" min="0" onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency" id="Un3Au8" value="3" size="4" step="0.25" min="0" onclick="Calc()"></td>
+        <td></td>
+        <td>能力8</td>
+        <td><input type="number" class="Augment_Potency_b" id="WeAu8_b" value="3" size="4" step="0.25" min="0" onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency_b" id="Un1Au8_b" value="3" size="4" step="0.25" min="0" onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency_b" id="Un2Au8_b" value="3" size="4" step="0.25" min="0" onclick="Calc()"></td>
+        <td><input type="number" class="Augment_Potency_b" id="Un3Au8_b" value="3" size="4" step="0.25" min="0" onclick="Calc()"></td>
+      </tr>
+    -->
+
+      <tr>
+        <td>補正</td>
+        <td><input type="number" class="Augment_Potency" id="WePoy" value="0" size="4" step="0.25" min="0" onclick="Calc()">
+        </td>
+        <td><input type="number" class="Augment_Potency" id="Un1Po" value="4" size="4" step="0.25" min="0" onclick="Calc()">
+        </td>
+        <td><input type="number" class="Augment_Potency" id="Un2Po" value="4" size="4" step="0.25" min="0" onclick="Calc()">
+        </td>
+        <td><input type="number" class="Augment_Potency" id="Un3Po" value="4" size="4" step="0.25" min="0" onclick="Calc()">
+        </td>
+        <td></td>
+        <td>補正</td>
+        <td><input type="number" class="Augment_Potency_b" id="WePoy_b" value="0" size="4" step="0.25" min="0" onclick="Calc()">
+        </td>
+        <td><input type="number" class="Augment_Potency_b" id="Un1Po_b" value="4" size="4" step="0.25" min="0" onclick="Calc()">
+        </td>
+        <td><input type="number" class="Augment_Potency_b" id="Un2Po_b" value="4" size="4" step="0.25" min="0" onclick="Calc()">
+        </td>
+        <td><input type="number" class="Augment_Potency_b" id="Un3Po_b" value="4" size="4" step="0.25" min="0" onclick="Calc()">
+        </td>
+      </tr>
+    </table>
+
+    <br>
+
+    <table>
+      <tr>
+        <th>潜在1</th>
+        <th>潜在2</th>
+        <th>潜在3</th>
+        <th>プリセット</th>
+        <th>マグ</th>
+        <th></th>
+        <th>潜在1</th>
+        <th>潜在2</th>
+        <th>潜在3</th>
+        <th>プリセット</th>
+        <th>マグ</th>
+      </tr>
+
+      <tr>
+        <td><input type="number" class="Non_Augment_Potency" id="WePol1" value="42" size="4" step="0.25" min="0"
+            onclick="Calc()"></td>
+        <td><input type="number" class="Non_Augment_Potency" id="WePol2" value="8" size="4" step="0.25" min="0"
+            onclick="Calc()"></td>
+        <td><input type="number" class="Non_Augment_Potency" id="WePol3" value="0" size="4" step="0.25" min="0"
+            onclick="Calc()"></td>
+        <td><input type="number" class="Non_Augment_Potency" id="Pre" value="5" size="4" step="0.5" max="5" min="0" onclick="Calc()">
+        </td>
+        <td><input type="number" class="Non_Augment_Potency" id="Mag" value="0" size="4" step="5" max="5" min="0" onclick="Calc()"></td>
+        <td></td>
+        <td><input type="number" class="Non_Augment_Potency_b" id="WePol1_b" value="42" size="4" step="0.25" min="0"
+            onclick="Calc()"></td>
+        <td><input type="number" class="Non_Augment_Potency_b" id="WePol2_b" value="8" size="4" step="0.25" min="0"
+            onclick="Calc()"></td>
+        <td><input type="number" class="Non_Augment_Potency_b" id="WePol3_b" value="0" size="4" step="0.25" min="0"
+            onclick="Calc()"></td>
+        <td><input type="number" class="Non_Augment_Potency_b" id="Pre_b" value="3" size="4" step="0.5" max="5" min="0"
+            onclick="Calc()"></td>
+        <td><input type="number" class="Non_Augment_Potency_b" id="Mag_b" value="0" size="4" step="5" max="5" min="0" onclick="Calc()">
+        </td>
+      </tr>
+
+      <tr>
+        <th>フード</th>
+        <th>シャッキ</th>
+        <th>PA倍率</th>
+        <th>アドオン</th>
+        <th>シフデバ</th>
+        <th></th>
+        <th>フード</th>
+        <th>シャッキ</th>
+        <th>PA倍率</th>
+        <th>アドオン</th>
+        <th>シフデバ</th>
+      </tr>
+
+      <tr>
+        <td><input type="number" class="Non_Augment_Potency" id="Food" value="10" size="4" step="0.25" max="10" min="0" onclick="Calc()">
+        </td>
+        <td><input type="number" id="Crisp" value="5" size="4" step="0.25" max="5" min="0" onclick="Calc()"></td>
+        <td><input type="number" id="PA" value="132" size="4" step="0.25" min="0" onclick="Calc()"></td>
+        <td><input type="number" class="Non_Augment_Potency" id="Addon" value="5" size="4" step="0.25" max="5" min="0" onclick="Calc()">
+        </td>
+        <td><input type="number" class="Non_Augment_Potency" id="ShifDeb" value="5" size="4" step="5" max="5" min="0" onclick="Calc()">
+        </td>
+        <td></td>
+        <td><input type="number" class="Non_Augment_Potency_b" id="Food_b" value="10" size="4" step="0.25" max="10" min="0"
+            onclick="Calc()"></td>
+        <td><input type="number" id="Crisp_b" value="0" size="4" step="0.25" max="5" min="0" onclick="Calc()"></td>
+        <td><input type="number" id="PA_b" value="205" size="4" step="0.25" min="0" onclick="Calc()"></td>
+        <td><input type="number" class="Non_Augment_Potency_b" id="Addon_b" value="4.5" size="4" step="0.25" max="5" min="0"
+            onclick="Calc()"></td>
+        <td><input type="number" class="Non_Augment_Potency_b" id="ShifDeb_b" value="0" size="4" step="5" max="5" min="0"
+            onclick="Calc()"></td>
+      <tr>
+        <th>クラス補正</th>
+        <th>任意倍率</th>
+        <th>任意倍率</th>
+        <th>任意倍率</th>
+        <th>任意倍率</th>
+        <th></th>
+        <th>クラス補正</th>
+        <th>任意倍率</th>
+        <th>任意倍率</th>
+        <th>任意倍率</th>
+        <th>任意倍率</th>
+      </tr>
+
+      <tr>
+        <td><input type="number" class="Non_Augment_Potency" id="ClassBoost" value="10" size="4" step="0.25" max="10" min="0"
+            onclick="Calc()"></td>
+        <td><input type="number" class="Non_Augment_Potency" id="Any1" value="0" size="4" step="0.25" min="0" onclick="Calc()">
+        </td>
+        <td><input type="number" class="Non_Augment_Potency" id="Any2" value="0" size="4" step="0.25" min="0" onclick="Calc()">
+        </td>
+        <td><input type="number" class="Non_Augment_Potency" id="Any3" value="0" size="4" step="0.25" min="0" onclick="Calc()">
+        </td>
+        <td><input type="number" class="Non_Augment_Potency" id="Any4" value="0" size="4" step="0.25" min="0" onclick="Calc()">
+        </td>
+        <td></td>
+        <td><input type="number" class="Non_Augment_Potency_b" id="ClassBoost_b" value="10" size="4" step="0.25" max="10" min="0"
+            onclick="Calc()"></td>
+        <td><input type="number" class="Non_Augment_Potency_b" id="Any1_b" value="0" size="4" step="0.25" min="0"
+            onclick="Calc()"></td>
+        <td><input type="number" class="Non_Augment_Potency_b" id="Any2_b" value="0" size="4" step="0.25" min="0"
+            onclick="Calc()"></td>
+        <td><input type="number" class="Non_Augment_Potency_b" id="Any3_b" value="0" size="4" step="0.25" min="0"
+            onclick="Calc()"></td>
+        <td><input type="number" class="Non_Augment_Potency_b" id="Any4_b" value="0" size="4" step="0.25" min="0"
+            onclick="Calc()"></td>
+      </tr>
+    </table>
+
+    <br>
+
+    <table>
+      <tr>
+        <th>威力</th>
+        <th>R1弱点</th>
+        <th>R1</th>
+        <th>R3弱点</th>
+        <th>R3</th>
+        <th></th>
+        <th>威力</th>
+        <th>R1弱点</th>
+        <th>R1</th>
+        <th>R3弱点</th>
+        <th>R3</th>
+      </tr>
+
+      <tr>
+        <td><input type="text" id="Potency" readonly="" value="0"></td>
+        <td><input type="text" id=R1Result1 readonly="" value="0"></td>
+        <td><input type="text" id=R1Result2 readonly="" value="0"></td>
+        <td><input type="text" id=R3Result1 readonly="" value="0"></td>
+        <td><input type="text" id=R3Result2 readonly="" value="0"></td>
+        <td></td>
+        <td><input type="text" id="Potency_b" readonly="" value="0"></td>
+        <td><input type="text" id="R1Result1_b" readonly="" value="0"></td>
+        <td><input type="text" id="R1Result2_b" readonly="" value="0"></td>
+        <td><input type="text" id="R3Result1_b" readonly="" value="0"></td>
+        <td><input type="text" id="R3Result2_b" readonly="" value="0"></td>
+      </tr>
+    </table>
+    <br>
+    <th style="border:none;"><input type="button" value="計算" onclick="Calc()"></th>
+    <p>非弱点やテクニック以外の場合はR1､R3</p>
+  </form>
+</body>
+
+<footer>
+  <p>（C）SEGA『PHANTASY STAR ONLINE 2』公式サイト<a href="https://pso2.jp/">https://pso2.jp/</a></p>
+</footer>
+
+</html>
